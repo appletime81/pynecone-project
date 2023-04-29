@@ -34,8 +34,35 @@ def index() -> pc.Component:
         padding_top="10%",
     )
 
+def fuck() -> pc.Component:
+    return pc.center(
+        pc.vstack(
+            pc.heading("Welcome to GGGGGGGG!", font_size="2em"),
+            pc.box("Get started by editing ", pc.code(filename, font_size="1em")),
+            pc.link(
+                "Check out our docs!",
+                href=docs_url,
+                border="0.1em solid",
+                padding="0.5em",
+                border_radius="0.5em",
+                _hover={
+                    "color": "rgb(107,99,246)",
+                },
+            ),
+            spacing="1.5em",
+            font_size="2em",
+        ),
+        padding_top="10%",
+    )
+
+async def api_test(item_id: int):
+    return {"my_result": item_id}
+
+
 
 # Add state and page to the app.
 app = pc.App(state=State)
+app.api.add_api_route("/items/{item_id}", api_test)
 app.add_page(index)
+app.add_page(fuck)
 app.compile()
